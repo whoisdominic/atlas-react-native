@@ -37,19 +37,23 @@ function useInteractor() {
 
   const navigation = useNavigation();
 
-  useEffect(() => {
-    console.log("Landing Interactor Mounted");
-    return () => {
-      console.log("Landing Interactor Unmounted");
-    };
-  }, []);
-
   useGuard({
     action: () => {
       navigation.navigate(Routes.FALLBACK);
     },
-    refireOnFocus: true,
+    refireOnFocus: false,
     condition: count > 5,
+    disabled: false,
+  });
+
+  useGuard({
+    action: () => {
+      navigation.navigate(Routes.DETAILS, {
+        id: count,
+      });
+    },
+    refireOnFocus: true,
+    condition: count >= 20,
     disabled: false,
   });
 

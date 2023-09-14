@@ -1,5 +1,5 @@
 import { useIsFocused } from "@react-navigation/native";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useRef } from "react";
 
 export function useGuard({
   condition,
@@ -9,6 +9,9 @@ export function useGuard({
 }: GuardBase) {
   const focused = useIsFocused();
 
+  const prevConditionRef = useRef(condition);
+  const prevFocusedRef = useRef(focused);
+
   const runGuard = useCallback(() => {
     if (condition && !disabled) {
       action();
@@ -16,10 +19,14 @@ export function useGuard({
   }, [condition, action, disabled]);
 
   useEffect(() => {
-    runGuard();
-  }, [condition]);
+    if (
+      condition !== prevConditionRef.current ||
+      (refireOnFocus && focused !== prevFocusedRef.current)
+    ) {
+      runGuard();
+    }
 
-  useEffect(() => {
-    runGuard();
-  }, [refireOnFocus && focused]);
+    prevConditionRef.current = condition;
+    prevFocusedRef.current = focused;
+  }, [condition, focused, runGuard, refireOnFocus]);
 }
