@@ -1,1 +1,1 @@
-# atlas-react-native
+# Atlas Boilerplate
