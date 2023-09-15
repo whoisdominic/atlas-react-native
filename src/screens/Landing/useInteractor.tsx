@@ -1,9 +1,4 @@
-import React, {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-} from "react";
+import React, { createContext, useCallback, useContext } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { increment } from "../../state/features/counterSlice";
 import { useNavigation } from "@react-navigation/native";
@@ -14,6 +9,16 @@ type ProviderValue = ReturnType<typeof useInteractor>;
 
 const LandingContext = createContext<ProviderValue>({} as ProviderValue);
 
+/**
+ * `ProvideLandingInteractor`
+ * This component is a wrapper for the any component that needs to use the `useLandingInteractor` hook.
+ * Remember to add the `key` prop to like this:
+ * ```tsx
+ * <ProvideLandingInteractor key={Routes.SOME_SCREEN_ENUM_OR_UNIQUE_STRING>
+ *
+ * @param param0
+ * @returns
+ */
 export function ProvideLandingInteractor({
   children,
 }: {
@@ -27,6 +32,11 @@ export function ProvideLandingInteractor({
   );
 }
 
+/**
+ * `useLandingInteractor`
+ * This hook is uses the useInteractor sub-hook's context
+ * so that it can be used in any child of the provider.
+ */
 export const useLandingInteractor = () => {
   return useContext(LandingContext);
 };

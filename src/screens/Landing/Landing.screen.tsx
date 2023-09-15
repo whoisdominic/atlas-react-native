@@ -1,15 +1,15 @@
 import { Text, Pressable, View } from "react-native";
 import React from "react";
 import { Screen } from "../../components";
-import { useAppDispatch, useAppSelector } from "../../hooks";
 import {
   ProvideLandingInteractor,
   useLandingInteractor,
 } from "./useInteractor";
+import { Routes } from "../../navigation/types";
 
 export function LandingScreen() {
   return (
-    <ProvideLandingInteractor>
+    <ProvideLandingInteractor key={Routes.LANDING}>
       <Screen align="center" justify="center">
         <CountSection />
       </Screen>
