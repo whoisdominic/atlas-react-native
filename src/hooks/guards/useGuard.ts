@@ -1,5 +1,5 @@
-import { useIsFocused } from "@react-navigation/native";
-import { useCallback, useEffect, useRef } from "react";
+import { useIsFocused } from "@react-navigation/native"
+import { useCallback, useEffect, useRef } from "react"
 
 /**
  * `useGuard` is a React hook that conditionally executes a specified action.
@@ -23,26 +23,26 @@ export function useGuard({
   disabled,
   refireOnFocus,
 }: GuardConfig) {
-  const focused = useIsFocused();
+  const focused = useIsFocused()
 
-  const prevConditionRef = useRef(condition);
-  const prevFocusedRef = useRef(focused);
+  const prevConditionRef = useRef(condition)
+  const prevFocusedRef = useRef(focused)
 
   const runGuard = useCallback(() => {
     if (condition && !disabled) {
-      action();
+      action()
     }
-  }, [condition, action, disabled]);
+  }, [condition, action, disabled])
 
   useEffect(() => {
     if (
       condition !== prevConditionRef.current ||
       (refireOnFocus && focused !== prevFocusedRef.current)
     ) {
-      runGuard();
+      runGuard()
     }
 
-    prevConditionRef.current = condition;
-    prevFocusedRef.current = focused;
-  }, [condition, focused, runGuard, refireOnFocus]);
+    prevConditionRef.current = condition
+    prevFocusedRef.current = focused
+  }, [condition, focused, runGuard, refireOnFocus])
 }

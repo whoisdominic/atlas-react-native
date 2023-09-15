@@ -1,21 +1,21 @@
-import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { RootStackParamList, Routes, initialRoute } from "./types";
-import { noHeaderStack } from "./options";
+import React from "react"
+import { NavigationContainer } from "@react-navigation/native"
+import { createNativeStackNavigator } from "@react-navigation/native-stack"
+import { RootStackParamList, Routes, initialRoute } from "./types"
+import { noHeaderStack } from "./options"
 import {
   FallBackScreen,
   LandingScreen,
   DetailsScreen,
   NotFoundScreen,
-} from "../screens";
-import { navigationRef } from "./navigationRef";
-import { linkingConfig } from "./linkingConfig";
+} from "../screens"
+import { navigationRef } from "./navigationRef"
+import { linkingConfig } from "./linkingConfig"
 
-const RootStack = createNativeStackNavigator<RootStackParamList>();
+const RootStack = createNativeStackNavigator<RootStackParamList>()
 
 interface Props {
-  onLayout: () => Promise<void>;
+  onLayout: () => Promise<void>
 }
 
 export function RootNavigation({ onLayout }: Props) {
@@ -36,5 +36,5 @@ export function RootNavigation({ onLayout }: Props) {
         <RootStack.Screen name={Routes.NOTFOUND} component={NotFoundScreen} />
       </RootStack.Navigator>
     </NavigationContainer>
-  );
+  )
 }

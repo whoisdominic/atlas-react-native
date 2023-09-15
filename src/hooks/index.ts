@@ -1,2 +1,2 @@
-export * from "./lifecycle";
-export * from "./useRedux";
+export * from "./lifecycle"
+export * from "./useRedux"

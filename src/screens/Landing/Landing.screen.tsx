@@ -1,11 +1,8 @@
-import { Text, Pressable, View } from "react-native";
-import React from "react";
-import { Screen } from "../../components";
-import {
-  ProvideLandingInteractor,
-  useLandingInteractor,
-} from "./useInteractor";
-import { Routes } from "../../navigation/types";
+import { Text, Pressable, View } from "react-native"
+import React from "react"
+import { Screen } from "../../components"
+import { ProvideLandingInteractor, useLandingInteractor } from "./useInteractor"
+import { Routes } from "../../navigation/types"
 
 export function LandingScreen() {
   return (
@@ -14,11 +11,11 @@ export function LandingScreen() {
         <CountSection />
       </Screen>
     </ProvideLandingInteractor>
-  );
+  )
 }
 
 function CountSection() {
-  const { count, handleIncrement } = useLandingInteractor();
+  const { count, handleIncrement } = useLandingInteractor()
 
   return (
     <View
@@ -36,5 +33,5 @@ function CountSection() {
         </Text>
       </Pressable>
     </View>
-  );
+  )
 }

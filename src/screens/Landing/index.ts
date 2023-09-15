@@ -1,1 +1,1 @@
-export { LandingScreen } from "./Landing.screen";
+export { LandingScreen } from "./Landing.screen"

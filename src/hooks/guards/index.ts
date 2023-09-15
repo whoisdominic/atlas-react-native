@@ -1,1 +1,1 @@
-export { useGuard } from "./useGuard";
+export { useGuard } from "./useGuard"

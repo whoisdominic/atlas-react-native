@@ -6,13 +6,13 @@ export enum Routes {
 }
 
 export type RootStackParamList = {
-  [Routes.LANDING]: undefined;
-  [Routes.FALLBACK]: undefined;
-  [Routes.DETAILS]: { id: number };
-  [Routes.NOTFOUND]: undefined;
-};
+  [Routes.LANDING]: undefined
+  [Routes.FALLBACK]: undefined
+  [Routes.DETAILS]: { id: number }
+  [Routes.NOTFOUND]: undefined
+}
 
-export const initialRoute = Routes.LANDING;
+export const initialRoute = Routes.LANDING
 
 declare global {
   namespace ReactNavigation {

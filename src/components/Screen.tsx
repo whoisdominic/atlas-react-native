@@ -4,18 +4,18 @@ import {
   StyleProp,
   View,
   ViewStyle,
-} from "react-native";
-import React from "react";
-import { StatusBar, StatusBarStyle } from "expo-status-bar";
+} from "react-native"
+import React from "react"
+import { StatusBar } from "expo-status-bar"
 
 interface Props {
-  children: React.ReactNode;
-  safe?: boolean;
-  backgroundColor?: string;
-  padding?: number;
-  justify?: FlexStyle["justifyContent"];
-  align?: FlexStyle["alignItems"];
-  statusBar?: "dark";
+  children: React.ReactNode
+  safe?: boolean
+  backgroundColor?: string
+  padding?: number
+  justify?: FlexStyle["justifyContent"]
+  align?: FlexStyle["alignItems"]
+  statusBar?: "dark"
 }
 
 export const Screen: React.FC<Props> = ({
@@ -30,7 +30,7 @@ export const Screen: React.FC<Props> = ({
   const style: StyleProp<ViewStyle> = {
     flex: 1,
     backgroundColor,
-  };
+  }
 
   if (safe) {
     return (
@@ -47,7 +47,7 @@ export const Screen: React.FC<Props> = ({
         <StatusBar style={statusBar} />
         {children}
       </SafeAreaView>
-    );
+    )
   }
 
   return (
@@ -64,7 +64,7 @@ export const Screen: React.FC<Props> = ({
       <StatusBar style={statusBar} />
       {children}
     </View>
-  );
-};
+  )
+}
 
-export default Screen;
+export default Screen
