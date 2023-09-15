@@ -1,5 +1,6 @@
 import { useIsFocused } from "@react-navigation/native"
 import { useCallback, useEffect, useRef } from "react"
+import { GuardConfig } from "./types"
 
 /**
  * `useGuard` is a React hook that conditionally executes a specified action.
