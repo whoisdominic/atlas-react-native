@@ -23,7 +23,7 @@
  * @since 1.0.0
  * @version 1.0.0
  */
-interface GuardConfig {
+export interface GuardConfig {
   condition: boolean // Determines if the action should be executed
   action: () => void // The action to execute
   disabled?: boolean // Disable the guard action
