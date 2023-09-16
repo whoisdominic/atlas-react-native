@@ -1,7 +1,15 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
+import {
+  AnyAction,
+  createAction,
+  createAsyncThunk,
+  createSlice,
+  MiddlewareAPI,
+  PayloadAction,
+} from "@reduxjs/toolkit"
 import type { RootState } from "../store"
 import { userService } from "../../services"
 import { User } from "./types"
+import { SET_PRE_LAUNCH_DATA } from "./actionTypes"
 
 // First, create the thunk
 export const fetchManyUsers = createAsyncThunk(
@@ -23,6 +31,7 @@ enum ThunkStatus {
 export interface AuthState {
   users: User[]
   loading: ThunkStatus
+  isAuthenticated?: boolean
 }
 
 // Define the initial state using that type
@@ -31,12 +40,25 @@ const initialState: AuthState = {
   users: [],
 }
 
+interface SetPreLaunchDataPayload {
+  counterValue: number
+}
+
+export const setPreLaunchData =
+  createAction<SetPreLaunchDataPayload>(SET_PRE_LAUNCH_DATA)
+
 export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
     resetUsers: (state) => {
       state.users = []
+    },
+    login: (state, action) => {
+      state.isAuthenticated = true
+    },
+    logout: (state) => {
+      state.isAuthenticated = false
     },
   },
   extraReducers: (builder) => {
@@ -54,10 +76,14 @@ export const authSlice = createSlice({
       .addCase(fetchManyUsers.rejected, (state, action) => {
         state.loading = ThunkStatus.REJECTED
       })
+      .addCase(setPreLaunchData, (state, action) => {
+        // The payload should have the data for this slice
+        // state. = action.payload.counterValue; // replace counterValue with the actual key holding the value for the counter in your payload
+      })
   },
 })
 
-export const { resetUsers } = authSlice.actions
+export const { resetUsers, login, logout } = authSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
 export const userCount = (state: RootState) => state.auth.users.length
