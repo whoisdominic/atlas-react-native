@@ -2,19 +2,58 @@ import axios, {
   AxiosInstance,
   AxiosResponse,
   AxiosError,
-  AxiosRequestConfig,
   InternalAxiosRequestConfig,
 } from "axios"
 
-export class HttpClient {
-  protected readonly instance: AxiosInstance
+interface HttpClientConfig {
+  baseURL: string
+  getToken?: () => string
+}
 
-  public constructor(baseURL: string) {
+class HttpClientError extends Error {
+  public code: string
+  public message: string
+
+  public constructor({
+    code,
+    message,
+  }: {
+    code: string | undefined
+    message: string
+  }) {
+    super(message)
+    this.code = code ?? ""
+    this.message = message
+  }
+}
+
+export abstract class HttpClient {
+  private instance: AxiosInstance
+  private getToken?: () => string
+
+  public constructor({ baseURL, getToken }: HttpClientConfig) {
     this.instance = axios.create({
       baseURL,
     })
     this.initializeResponseInterceptor()
     this.initializeRequestInterceptor()
+    this.getToken = getToken
+  }
+
+  protected async get<T>(url: string): Promise<T> {
+    return this.handleResponse(await this.instance.get<T>(url))
+  }
+
+  protected async post<T, K>(url: string, payload: K): Promise<T> {
+    return this.handleResponse(await this.instance.post<T>(url, payload))
+  }
+
+  protected async put<T, K>(url: string, payload: K): Promise<T> {
+    return this.handleResponse(await this.instance.put<T>(url, payload))
+  }
+
+  protected async delete<T>(url: string): Promise<T> {
+    return this.handleResponse(await this.instance.delete<T>(url))
   }
 
   private initializeRequestInterceptor = () => {
@@ -23,7 +62,8 @@ export class HttpClient {
 
   private initializeResponseInterceptor = () => {
     this.instance.interceptors.response.use(
-      this.handleResponse,
+      // We need to give a function here to be able to pass the handle
+      (response) => response,
       this.handleError,
     )
   }
@@ -31,14 +71,20 @@ export class HttpClient {
   private handleRequest: (
     value: InternalAxiosRequestConfig,
   ) => InternalAxiosRequestConfig = (config) => {
-    console.debug("Request ran: ", config?.url)
+    if (!this.getToken) return config
+
+    const token = this.getToken()
+    if (!token) return config
+
+    config.headers.Authorization = `Bearer ${token}`
+
     return config
   }
 
   private handleResponse = ({ data }: AxiosResponse) => data
 
-  protected handleError = (error: AxiosError) => {
-    return Promise.reject(error)
+  private handleError = ({ message, code }: AxiosError) => {
+    throw new HttpClientError({ code, message })
   }
 }
 

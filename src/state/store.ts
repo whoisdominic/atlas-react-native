@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit"
 import counterReducer from "./features/counterSlice"
-import authReducer from "./features/authSlice"
+import { authReducer } from "./features/auth"
 import { loggerMiddleware, authMiddleware } from "./middleware"
 
 export const store = configureStore({

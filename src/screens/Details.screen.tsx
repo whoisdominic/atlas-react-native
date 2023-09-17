@@ -6,8 +6,7 @@ import { RootStackParamList, Routes } from "../navigation/types"
 
 import type { RouteProp } from "@react-navigation/native"
 import { useAppDispatch, useAppSelector } from "../hooks"
-import { fetchManyUsers } from "../state/features/authSlice"
-import { User } from "../state/features/types"
+import { User } from "@types"
 
 type DetailsScreenRouteProp = RouteProp<RootStackParamList, Routes.DETAILS>
 
@@ -16,7 +15,7 @@ export function DetailsScreen() {
     params: { id },
   } = useRoute<DetailsScreenRouteProp>()
 
-  const { loading, users } = useAppSelector((state) => state.auth)
+  const { loading } = useAppSelector((state) => state.auth)
 
   const dispatch = useAppDispatch()
 
@@ -33,17 +32,9 @@ export function DetailsScreen() {
         }}
       >
         <Text>ID: {id}</Text>
-        <Button
-          title="Try thunk"
-          onPress={() => {
-            dispatch(fetchManyUsers())
-          }}
-        />
+        <Button title="Try thunk" />
         <Text>Result: {id}</Text>
         <Text>Loading: {loading}</Text>
-        {users.map((user) => {
-          return <UserCard key={user.id} user={user} />
-        })}
       </ScrollView>
     </Screen>
   )

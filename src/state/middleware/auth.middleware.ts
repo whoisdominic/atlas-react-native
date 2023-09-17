@@ -1,5 +1,5 @@
 import { MiddlewareAPI, AnyAction } from "@reduxjs/toolkit"
-import { logout } from "../features/authSlice"
+import { logout } from "../features/auth/"
 
 export const authMiddleware =
   (storeAPI: MiddlewareAPI) =>

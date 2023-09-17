@@ -1,6 +1,12 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true
+    "strict": true,
+    "strictNullChecks": true,
+    "baseUrl": "./",
+    "paths": {
+      "@types": ["src/@types"],
+      "@services": ["src/services"]
+    }
   }
 }
