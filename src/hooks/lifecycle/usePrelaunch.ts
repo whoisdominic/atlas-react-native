@@ -18,7 +18,7 @@ export const usePreLaunch = () => {
         store.dispatch(setPreLaunchData({ counterValue: 0 }))
         // Artificially delay for two seconds to simulate a slow loading
         // experience. Please remove this if you copy and paste the code!
-        await new Promise((resolve) => setTimeout(resolve, 5000))
+        await new Promise((resolve) => setTimeout(resolve, 2000))
       } catch (e) {
         // We might want to provide this error information to an error reporting service
         console.warn(e)

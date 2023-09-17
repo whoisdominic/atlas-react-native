@@ -7,7 +7,14 @@
     "paths": {
       "types": ["src/types"],
       "@services": ["src/services"],
-      "@state": ["src/state"]
+      "@state": ["src/state"],
+      "@components": ["src/components"],
+      "@constants": ["src/constants"],
+      "@utils": ["src/utils"],
+      "@screens": ["src/screens"],
+      "@navigation": ["src/navigation"],
+      "@assets": ["src/assets"],
+      "@hooks": ["src/hooks"]
     }
   }
 }

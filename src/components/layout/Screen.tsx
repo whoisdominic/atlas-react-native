@@ -4,9 +4,12 @@ import {
   StyleProp,
   View,
   ViewStyle,
+  Text,
 } from "react-native"
 import React from "react"
 import { StatusBar } from "expo-status-bar"
+import { useTheme } from "@hooks"
+import { theme } from "@constants"
 
 interface Props {
   children: React.ReactNode
@@ -24,12 +27,12 @@ export const Screen: React.FC<Props> = ({
   justify,
   padding,
   safe = true,
-  backgroundColor = "#fff",
   statusBar = "dark",
 }) => {
+  const { mode } = useTheme()
+
   const style: StyleProp<ViewStyle> = {
     flex: 1,
-    backgroundColor,
   }
 
   if (safe) {
@@ -41,10 +44,11 @@ export const Screen: React.FC<Props> = ({
             justifyContent: justify,
             alignItems: align,
             padding,
+            backgroundColor: theme[mode].background,
           },
         ]}
       >
-        <StatusBar style={statusBar} />
+        <StatusBar style={mode === "dark" ? "light" : "dark"} />
         {children}
       </SafeAreaView>
     )
@@ -61,7 +65,7 @@ export const Screen: React.FC<Props> = ({
         },
       ]}
     >
-      <StatusBar style={statusBar} />
+      <StatusBar style={mode === "dark" ? "light" : "dark"} />
       {children}
     </View>
   )

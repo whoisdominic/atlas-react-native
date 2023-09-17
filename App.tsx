@@ -2,7 +2,7 @@ import { useCallback } from "react"
 import { Provider } from "react-redux"
 import * as SplashScreen from "expo-splash-screen"
 
-import { usePreLaunch } from "./src/hooks"
+import { ProvideTheme, usePreLaunch } from "./src/hooks"
 import { RootNavigation } from "./src/navigation/RootNavigation"
 import { FallBackScreen } from "./src/screens"
 import { store } from "./src/state/store"
@@ -20,7 +20,9 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <RootNavigation onLayout={onLayoutRootView} />
+      <ProvideTheme>
+        <RootNavigation onLayout={onLayoutRootView} />
+      </ProvideTheme>
     </Provider>
   )
 }

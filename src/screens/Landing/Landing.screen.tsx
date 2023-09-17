@@ -1,9 +1,11 @@
-import { Text, Pressable, View } from "react-native"
+import { Text, Pressable, View, Switch } from "react-native"
 import React from "react"
-import { Screen } from "../../components"
+import { Container, Row, Screen, Spacer, ThemedText } from "@components"
 import { ProvideLandingInteractor, useLandingInteractor } from "./useInteractor"
 import { Routes } from "../../navigation/types"
 import * as Linking from "expo-linking"
+import { CopyStrings, theme } from "@constants"
+import { useTheme } from "@hooks"
 
 export function LandingScreen() {
   const url = Linking.useURL()
@@ -11,10 +13,47 @@ export function LandingScreen() {
   return (
     <ProvideLandingInteractor key={Routes.LANDING}>
       <Screen align="center" justify="center">
+        <WelcomeSection />
         <CountSection />
-        <Text>{url}</Text>
       </Screen>
     </ProvideLandingInteractor>
+  )
+}
+
+function WelcomeSection() {
+  const { toggleTheme, mode } = useTheme()
+
+  return (
+    <Container align="center">
+      <ThemedText
+        style={{
+          fontSize: 32,
+          textAlign: "center",
+        }}
+      >
+        {CopyStrings.welcome}
+      </ThemedText>
+      <Spacer vert={24} />
+      <ThemedText
+        style={{
+          maxWidth: 300,
+          fontSize: 16,
+          textAlign: "center",
+        }}
+      >
+        {CopyStrings.welcomeMessage}
+      </ThemedText>
+      <Spacer vert={24} />
+      <Row>
+        <Switch
+          trackColor={{ false: "#767577", true: theme[mode].secondary }}
+          thumbColor={mode === "light" ? theme[mode].primary : "#f4f3f4"}
+          ios_backgroundColor="#3e3e3e"
+          onValueChange={toggleTheme}
+          value={mode === "light"}
+        />
+      </Row>
+    </Container>
   )
 }
 
@@ -28,13 +67,13 @@ function CountSection() {
       }}
     >
       <Pressable onPress={handleIncrement}>
-        <Text
+        <ThemedText
           style={{
             fontSize: 32,
           }}
         >
           Count: {count}
-        </Text>
+        </ThemedText>
       </Pressable>
     </View>
   )

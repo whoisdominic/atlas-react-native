@@ -1,12 +1,13 @@
-import { StyleSheet, Button, Text, View, ScrollView } from "react-native"
+import { StyleSheet, Button, View, ScrollView } from "react-native"
 import React from "react"
-import { Screen } from "../components"
+import { Screen, ThemedText } from "../components"
 import { useRoute } from "@react-navigation/native"
 import { RootStackParamList, Routes } from "../navigation/types"
 
 import type { RouteProp } from "@react-navigation/native"
 import { useAppDispatch, useAppSelector } from "../hooks"
 import { User } from "src/types"
+import { reset, selectCount } from "@state"
 
 type DetailsScreenRouteProp = RouteProp<RootStackParamList, Routes.DETAILS>
 
@@ -16,7 +17,7 @@ export function DetailsScreen() {
   } = useRoute<DetailsScreenRouteProp>()
 
   const { loading } = useAppSelector((state) => state.auth)
-
+  const count = useAppSelector(selectCount)
   const dispatch = useAppDispatch()
 
   return (
@@ -31,10 +32,15 @@ export function DetailsScreen() {
           padding: 16,
         }}
       >
-        <Text>ID: {id}</Text>
-        <Button title="Try thunk" />
-        <Text>Result: {id}</Text>
-        <Text>Loading: {loading}</Text>
+        <ThemedText>ID: {id}</ThemedText>
+        <Button
+          title="Reset count"
+          onPress={() => {
+            dispatch(reset())
+          }}
+        />
+        <ThemedText>Result: {count}</ThemedText>
+        <ThemedText>Loading: {loading}</ThemedText>
       </ScrollView>
     </Screen>
   )
@@ -43,8 +49,8 @@ export function DetailsScreen() {
 const UserCard = ({ user }: { user: User }) => {
   return (
     <View style={styles.cardContainer}>
-      <Text>{user.name}</Text>
-      <Text>{user.email}</Text>
+      <ThemedText>{user.name}</ThemedText>
+      <ThemedText>{user.email}</ThemedText>
     </View>
   )
 }
