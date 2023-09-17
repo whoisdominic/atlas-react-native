@@ -54,7 +54,7 @@ function useInteractor() {
       })
     },
     refireOnFocus: true,
-    condition: count >= 5,
+    condition: count >= 3,
     disabled: false,
   })
 

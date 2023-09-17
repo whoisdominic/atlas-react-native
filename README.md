@@ -48,5 +48,5 @@ npx {command}
 You can test out linking using the following command
 
 ```bash
- npx uri-scheme open "exp://127.0.0.1:8081/" --ios
+ npx uri-scheme open "exp://127.0.0.1:8081/--/" --ios
 ```

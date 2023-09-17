@@ -15,7 +15,7 @@ export const usePreLaunch = () => {
 
         // Load pre-launch data: this data can be used to seed your store
         // Configure store with preLaunchData
-        store.dispatch(setPreLaunchData({ counterValue: 20 }))
+        store.dispatch(setPreLaunchData({ counterValue: 0 }))
         // Artificially delay for two seconds to simulate a slow loading
         // experience. Please remove this if you copy and paste the code!
         await new Promise((resolve) => setTimeout(resolve, 5000))
