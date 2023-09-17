@@ -18,6 +18,7 @@ interface ContainerProps extends StandardPositions {
   minWidth?: number
   color?: string
   borderRadius?: number
+  testID?: string
 }
 
 /**
@@ -54,9 +55,11 @@ export const Container: React.FC<ContainerProps> = ({
   minWidth,
   color,
   borderRadius,
+  testID,
 }) => {
   return (
     <View
+      testID={testID}
       children={children}
       style={[
         {

@@ -1,7 +1,7 @@
 import HttpClient from "./HttpClient"
 import { Post, Todo, User } from "src/types"
 
-class PlaceholderService extends HttpClient {
+export class PlaceholderService extends HttpClient {
   public constructor() {
     super({
       baseURL: "https://jsonplaceholder.typicode.com/",
@@ -33,5 +33,3 @@ class PlaceholderService extends HttpClient {
     return this.put<Post, Post>(`posts/${id}`, payload)
   }
 }
-
-export const placeholderService = new PlaceholderService()

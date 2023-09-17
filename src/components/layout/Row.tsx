@@ -13,6 +13,7 @@ interface RowProps extends StandardPositions {
   children?: React.ReactNode
   color?: ColorValue
   overide?: ViewStyle
+  testID?: string
 }
 
 /**
@@ -42,9 +43,11 @@ export const Row: React.FC<RowProps> = ({
   zIndex,
   color,
   overide,
+  testID,
 }) => {
   return (
     <View
+      testID={testID}
       children={children}
       style={[
         {

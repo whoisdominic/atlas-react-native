@@ -24,7 +24,7 @@ function WelcomeSection() {
   const { toggleTheme, mode } = useTheme()
 
   return (
-    <Container align="center">
+    <Container align="center" testID="welcome">
       <ThemedText
         style={{
           fontSize: 32,

@@ -21,6 +21,7 @@ interface ContainerProps extends StandardPositions {
   bottom?: number
   left?: number
   right?: number
+  testID?: string
 }
 
 /**
@@ -60,9 +61,11 @@ export const Positioned: React.FC<ContainerProps> = ({
   bottom,
   left,
   right,
+  testID,
 }) => {
   return (
     <View
+      testID={testID}
       children={children}
       style={[
         {

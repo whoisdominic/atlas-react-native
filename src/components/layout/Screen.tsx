@@ -19,6 +19,7 @@ interface Props {
   justify?: FlexStyle["justifyContent"]
   align?: FlexStyle["alignItems"]
   statusBar?: "dark"
+  testID?: string
 }
 
 export const Screen: React.FC<Props> = ({
@@ -28,6 +29,7 @@ export const Screen: React.FC<Props> = ({
   padding,
   safe = true,
   statusBar = "dark",
+  testID,
 }) => {
   const { mode } = useTheme()
 
@@ -38,6 +40,7 @@ export const Screen: React.FC<Props> = ({
   if (safe) {
     return (
       <SafeAreaView
+        testID={testID}
         style={[
           style,
           {
@@ -56,6 +59,7 @@ export const Screen: React.FC<Props> = ({
 
   return (
     <View
+      testID={testID}
       style={[
         style,
         {
