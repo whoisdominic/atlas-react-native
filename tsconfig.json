@@ -5,8 +5,9 @@
     "strictNullChecks": true,
     "baseUrl": "./",
     "paths": {
-      "@types": ["src/@types"],
-      "@services": ["src/services"]
+      "types": ["src/types"],
+      "@services": ["src/services"],
+      "@state": ["src/state"]
     }
   }
 }

@@ -1,5 +1,5 @@
 import HttpClient from "./HttpClient"
-import { Post, Todo, User } from "@types"
+import { Post, Todo, User } from "src/types"
 
 class PlaceholderService extends HttpClient {
   public constructor() {

@@ -2,10 +2,8 @@ import * as Linking from "expo-linking"
 import { LinkingOptions } from "@react-navigation/native"
 import { RootStackParamList, initialRoute } from "./types"
 
-const prefix = Linking.createURL("/")
-
 export const linkingConfig: LinkingOptions<RootStackParamList> = {
-  prefixes: [prefix],
+  prefixes: ["atlas://"],
   config: {
     screens: {
       Landing: "/",

@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import type { RootState } from "../store"
+import { setPreLaunchData } from "../global"
 
 // Define a type for the slice state
 export interface CounterState {
@@ -26,6 +27,12 @@ export const counterSlice = createSlice({
     incrementByAmount: (state, action: PayloadAction<number>) => {
       state.value += action.payload
     },
+  },
+
+  extraReducers: (builder) => {
+    builder.addCase(setPreLaunchData, (state, action) => {
+      state.value = action.payload.counterValue
+    })
   },
 })
 
