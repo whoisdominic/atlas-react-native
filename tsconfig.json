@@ -1,6 +1,9 @@
 {
   "extends": "expo/tsconfig.base",
+  "include": ["src/**/*", "@types/**/*"],
+  "typeRoots": ["./node_modules/@types", "./@types"],
   "compilerOptions": {
-    "strict": true
+    "strict": true,
+    "strictNullChecks": true
   }
 }

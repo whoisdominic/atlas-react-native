@@ -1,34 +1,21 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
-import type { RootState } from "../store"
-import { userService } from "../../services"
-import { User } from "./types"
-
-// First, create the thunk
-export const fetchManyUsers = createAsyncThunk(
-  "users/fetchByIdStatus",
-  async (thunkAPI) => {
-    const response = await userService.getUsers()
-    return response
-  },
-)
-
-enum ThunkStatus {
-  IDLE = "idle",
-  PENDING = "pending",
-  FULFILLED = "fulfilled",
-  REJECTED = "rejected",
-}
+import { PayloadAction, createSlice } from "@reduxjs/toolkit"
+import type { RootState } from "../../store"
+import { User } from "../types"
+import { fetchManyUsers } from "./thunks"
+// import { ThunkStatus } from "../../types"
 
 // Define a type for the slice state
 export interface AuthState {
   users: User[]
   loading: ThunkStatus
+  token: string
 }
 
 // Define the initial state using that type
 const initialState: AuthState = {
   loading: ThunkStatus.IDLE,
   users: [],
+  token: "",
 }
 
 export const authSlice = createSlice({
@@ -37,6 +24,12 @@ export const authSlice = createSlice({
   reducers: {
     resetUsers: (state) => {
       state.users = []
+    },
+    setToken: (state, { payload }: PayloadAction<string>) => {
+      state.token = payload
+    },
+    removeToken: (state) => {
+      state.token = ""
     },
   },
   extraReducers: (builder) => {

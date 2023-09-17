@@ -6,7 +6,7 @@ import { RootStackParamList, Routes } from "../navigation/types"
 
 import type { RouteProp } from "@react-navigation/native"
 import { useAppDispatch, useAppSelector } from "../hooks"
-import { fetchManyUsers } from "../state/features/authSlice"
+import { fetchManyUsers } from "../state/features/auth/authSlice"
 import { User } from "../state/features/types"
 
 type DetailsScreenRouteProp = RouteProp<RootStackParamList, Routes.DETAILS>
