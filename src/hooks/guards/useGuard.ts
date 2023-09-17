@@ -26,9 +26,6 @@ export function useGuard({
 }: GuardConfig) {
   const focused = useIsFocused()
 
-  const prevConditionRef = useRef(condition)
-  const prevFocusedRef = useRef(focused)
-
   const runGuard = useCallback(() => {
     if (condition && !disabled) {
       action()
@@ -36,14 +33,12 @@ export function useGuard({
   }, [condition, action, disabled])
 
   useEffect(() => {
-    if (
-      condition !== prevConditionRef.current ||
-      (refireOnFocus && focused !== prevFocusedRef.current)
-    ) {
+    runGuard()
+  }, [condition, runGuard])
+
+  useEffect(() => {
+    if (refireOnFocus) {
       runGuard()
     }
-
-    prevConditionRef.current = condition
-    prevFocusedRef.current = focused
-  }, [condition, focused, runGuard, refireOnFocus])
+  }, [refireOnFocus, focused, runGuard])
 }
