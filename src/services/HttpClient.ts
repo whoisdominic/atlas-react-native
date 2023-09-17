@@ -44,11 +44,11 @@ export abstract class HttpClient {
     return this.handleResponse(await this.instance.get<T>(url))
   }
 
-  protected async post<T>(url: string, payload: any): Promise<T> {
+  protected async post<T, K>(url: string, payload: K): Promise<T> {
     return this.handleResponse(await this.instance.post<T>(url, payload))
   }
 
-  protected async put<T>(url: string, payload: any): Promise<T> {
+  protected async put<T, K>(url: string, payload: K): Promise<T> {
     return this.handleResponse(await this.instance.put<T>(url, payload))
   }
 

@@ -49,21 +49,12 @@ function useInteractor() {
 
   useGuard({
     action: () => {
-      navigation.navigate(Routes.FALLBACK)
-    },
-    refireOnFocus: false,
-    condition: count > 5,
-    disabled: false,
-  })
-
-  useGuard({
-    action: () => {
       navigation.navigate(Routes.DETAILS, {
         id: count,
       })
     },
     refireOnFocus: true,
-    condition: count >= 20,
+    condition: count >= 5,
     disabled: false,
   })
 
