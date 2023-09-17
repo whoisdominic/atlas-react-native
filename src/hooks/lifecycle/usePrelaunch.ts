@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
 import * as SplashScreen from "expo-splash-screen"
+import { store } from "@state"
+import { setPreLaunchData } from "@state"
 
 export const usePreLaunch = () => {
   const [appIsReady, setAppIsReady] = useState(false)
-  const [preLaunchData, setPreLaunchData] = useState({})
 
   useEffect(() => {
     async function prepare() {
@@ -13,10 +14,11 @@ export const usePreLaunch = () => {
         // TODO: Load fonts or anything else you need HERE
 
         // Load pre-launch data: this data can be used to seed your store
-        setPreLaunchData({})
+        // Configure store with preLaunchData
+        store.dispatch(setPreLaunchData({ counterValue: 20 }))
         // Artificially delay for two seconds to simulate a slow loading
         // experience. Please remove this if you copy and paste the code!
-        await new Promise((resolve) => setTimeout(resolve, 2000))
+        await new Promise((resolve) => setTimeout(resolve, 5000))
       } catch (e) {
         // We might want to provide this error information to an error reporting service
         console.warn(e)
@@ -28,5 +30,5 @@ export const usePreLaunch = () => {
     prepare()
   }, [])
 
-  return { appIsReady, preLaunchData }
+  return { appIsReady }
 }

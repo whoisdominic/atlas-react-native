@@ -8,10 +8,7 @@ import { FallBackScreen } from "./src/screens"
 import { store } from "./src/state/store"
 
 export default function App() {
-  const { appIsReady, preLaunchData } = usePreLaunch()
-
-  // Configure store with preLaunchData
-  store.dispatch({ type: "SET_PRE_LAUNCH_DATA", payload: preLaunchData })
+  const { appIsReady } = usePreLaunch()
 
   const onLayoutRootView = useCallback(async () => {
     if (appIsReady) {

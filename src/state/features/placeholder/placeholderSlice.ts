@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"
-import { ThunkStatus, User } from "@types"
+import { ThunkStatus, User } from "src/types"
 import { fetchManyUsers } from "./thunks"
 // Define a type for the slice state
 export interface PlaceholderState {

@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit"
+import { configureStore, createAction } from "@reduxjs/toolkit"
 import counterReducer from "./features/counterSlice"
 import { authReducer } from "./features/auth"
 import { loggerMiddleware, authMiddleware } from "./middleware"
