@@ -1,4 +1,4 @@
-enum ThunkStatus {
+export enum ThunkStatus {
   IDLE = "idle",
   PENDING = "pending",
   FULFILLED = "fulfilled",

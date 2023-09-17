@@ -2,8 +2,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 import type { RootState } from "../../store"
 import { User } from "../types"
 import { fetchManyUsers } from "./thunks"
-// import { ThunkStatus } from "../../types"
-
+import { ThunkStatus } from "@types"
 // Define a type for the slice state
 export interface AuthState {
   users: User[]
