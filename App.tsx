@@ -26,3 +26,7 @@ export default function App() {
     </Provider>
   )
 }
+
+if (__DEV__) {
+  import("./ReactotronConfig").then(() => console.log("Reactotron Configured"))
+}

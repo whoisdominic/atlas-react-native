@@ -4,6 +4,7 @@
     "strict": true,
     "strictNullChecks": true,
     "baseUrl": "./",
+    "module": "esnext",
     "paths": {
       "types": ["src/types"],
       "@services": ["src/services"],

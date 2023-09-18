@@ -1,7 +1,8 @@
-import { configureStore, createAction } from "@reduxjs/toolkit"
+import { configureStore } from "@reduxjs/toolkit"
 import counterReducer from "./features/counterSlice"
 import { authReducer } from "./features/auth"
 import { loggerMiddleware, authMiddleware } from "./middleware"
+import { reactotron } from "../../ReactotronConfig"
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,8 @@ export const store = configureStore({
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(authMiddleware, loggerMiddleware),
+  // @ts-expect-error
+  enhancers: [reactotron.createEnhancer()],
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
