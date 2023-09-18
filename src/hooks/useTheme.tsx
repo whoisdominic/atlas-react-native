@@ -5,6 +5,7 @@ type ProviderThemeValue = ReturnType<typeof useInteractor>
 const ThemeContext = createContext<ProviderThemeValue>({
   mode: "light",
   toggleTheme: () => {},
+  oppositeMode: "dark",
 } as ProviderThemeValue)
 
 /**
@@ -47,8 +48,11 @@ function useInteractor() {
     setMode((prev) => (prev === "light" ? "dark" : "light"))
   }, [])
 
+  const oppositeMode: "light" | "dark" = mode === "light" ? "dark" : "light"
+
   return {
     mode,
     toggleTheme,
+    oppositeMode,
   }
 }

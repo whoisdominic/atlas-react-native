@@ -1,6 +1,7 @@
 import { useCallback } from "react"
 import { Provider } from "react-redux"
 import * as SplashScreen from "expo-splash-screen"
+import { GestureHandlerRootView } from "react-native-gesture-handler"
 
 import { ProvideTheme, usePreLaunch } from "./src/hooks"
 import { RootNavigation } from "./src/navigation/RootNavigation"
@@ -19,11 +20,13 @@ export default function App() {
   if (!appIsReady) return <FallBackScreen />
 
   return (
-    <Provider store={store}>
-      <ProvideTheme>
-        <RootNavigation onLayout={onLayoutRootView} />
-      </ProvideTheme>
-    </Provider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <Provider store={store}>
+        <ProvideTheme>
+          <RootNavigation onLayout={onLayoutRootView} />
+        </ProvideTheme>
+      </Provider>
+    </GestureHandlerRootView>
   )
 }
 
